@@ -1,0 +1,25 @@
+{
+  "name": "@dotmh/lambda-controller",
+  "version": "0.1.0",
+  "description": "A controller to work on AWS Lambda behind API Gateway ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotmh/lambda-controller.git"
+  },
+  "keywords": [
+    "Lambda",
+    "Serverless",
+    "Controller",
+    "DotMH"
+  ],
+  "author": "Martin Haynes <oss@dotmh.io>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dotmh/lambda-controller/issues"
+  },
+  "homepage": "https://github.com/dotmh/lambda-controller#readme"
+}
