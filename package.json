@@ -1,6 +1,6 @@
 {
   "name": "@dotmh/lambda-controller",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A controller to work on AWS Lambda behind API Gateway ",
   "main": "index.js",
   "scripts": {
