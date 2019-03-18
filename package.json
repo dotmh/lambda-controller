@@ -4,7 +4,7 @@
   "description": "A controller to work on AWS Lambda behind API Gateway ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx nyc mocha --recursive specs/*.spec.js --exit"
   },
   "repository": {
     "type": "git",
@@ -38,5 +38,20 @@
     "chai": "^4.2.0",
     "istanbul": "^0.4.5",
     "mocha": "^6.0.2"
+  },
+  "nyc": {
+    "extension": [
+      ".js"
+    ],
+    "exclude": [
+      "specs/**/*",
+      "dist/**/*",
+      "coverage/**/*",
+      "docs/**/*"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
   }
 }
