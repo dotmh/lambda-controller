@@ -36,8 +36,8 @@ module.exports = class LambdaController {
 		return this;
 	}
 
-	statusCode(code) {
-		this.response.status = code;
+	status(code) {
+		this.response.statusCode = code;
 		return this;
 	}
 
