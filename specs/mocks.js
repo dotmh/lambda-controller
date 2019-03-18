@@ -31,10 +31,13 @@ module.exports.event = {
             "X-Forwarded-For": "86.178.79.47, 70.132.20.154",
             "X-Forwarded-Port": "443",
             "X-Forwarded-Proto": "https"
-        }
-    },
-    "queryStringParameters": {
-		"translate": "컴백 임박’ 모모랜드 연우-주이-혜빈-나윤, 개인 티저 이미지 공개"
-    },
-    "body": null
+        },
+        "queryStringParameters": {
+            "translate": "컴백 임박’ 모모랜드 연우-주이-혜빈-나윤, 개인 티저 이미지 공개"
+        },
+        "pathParameters": {
+            "proxy": "hello"
+        },
+        "body": null
+    }
 };
