@@ -1,3 +1,11 @@
+module.exports.ctx = {
+    noop: null
+};
+
+module.exports.callback = {
+    noop: () => null
+};
+
 module.exports.event = {
     valid: {
         "resource": "/",
@@ -29,4 +37,4 @@ module.exports.event = {
 		"translate": "컴백 임박’ 모모랜드 연우-주이-혜빈-나윤, 개인 티저 이미지 공개"
     },
     "body": null
-}
+};
