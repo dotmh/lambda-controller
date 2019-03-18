@@ -5,7 +5,7 @@ module.exports = class LambdaController {
 		this.callback = callback;
 
 		this.response = {
-			status: 200,
+			statusCode: 200,
 			headers: {},
 			body: ""
 		};
@@ -32,11 +32,11 @@ module.exports = class LambdaController {
 	}
 
 	addHeader(header, value) {
-		this.response[header] = value;
+		this.response.headers[header] = value;
 		return this;
 	}
 
-	status(code) {
+	statusCode(code) {
 		this.response.status = code;
 		return this;
 	}
