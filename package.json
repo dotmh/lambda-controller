@@ -34,7 +34,8 @@
         "error",
         "always"
       ]
-    }
+    },
+    "env" : ["mocha"]
   },
   "devDependencies": {
     "chai": "^4.2.0",
