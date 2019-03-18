@@ -122,7 +122,7 @@ describe("LambdaController", function () {
             controller.error(code, body);
         });
 
-        it("Shold send an HTTP error with a status code of 404 and a message", function (done) {
+        it("Should send an HTTP error with a status code of 404 and a message", function (done) {
             const code = 404;
             const body = "Resource was not found";
             const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
@@ -134,7 +134,7 @@ describe("LambdaController", function () {
             controller.notFound();
         });
 
-        it("Shold send an HTTP error with a status code of 500 and a message", function (done) {
+        it("Should send an HTTP error with a status code of 500 and a message", function (done) {
             const code = 500;
             const body = "Resource unavailable";
             const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
@@ -146,7 +146,7 @@ describe("LambdaController", function () {
             controller.serverError();
         });
 
-        it("Shold send an HTTP error with a status code of 400 and a message", function (done) {
+        it("Should send an HTTP error with a status code of 400 and a message", function (done) {
             const code = 400;
             const body = "Bad request to resource";
             const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
