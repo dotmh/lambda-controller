@@ -52,24 +52,28 @@ describe("LambdaController", function () {
                     [headerName]: headerValue
                 });
         });
+
         it("#statusCode should change the response status code", function () {
             const controller = mockController();
             const statusCode = 301;
             controller.status(statusCode);
             expect(controller.response.statusCode).to.be.a("number").and.equal(statusCode);
         });
+
         it("#body should change the response body", function () {
             const controller = mockController();
             const body = "hello world!";
             controller.body(body);
             expect(controller.response.body).to.be.a("string").and.equal(body);
         });
+
         it("#type should up the header Content-Type to the MIME Type", function () {
             const controller = mockController();
             const mime = "application/javascript";
             controller.type(mime);
             expect(controller.response.headers["Content-Type"]).to.be.a("string").and.equal(mime);
         });
+
         it("#json should set the body to stringify JSON, and set the MIME Type", function () {
             const controller = mockController();
             const obj = {foo: "bar"};
@@ -83,12 +87,76 @@ describe("LambdaController", function () {
     });
 
     describe("Send", function () {
-        it("should send the response by calling the callback");
-        it("should send an object as serialized json with the correct MIME type");
-        it("should send an HTTP Error response with the correct status code");
-        it("Shold send an HTTP error with a status code of 404 and a message");
-        it("Shold send an HTTP error with a status code of 500 and a message");
-        it("Shold send an HTTP error with a status code of 400 and a message");
+        it("should send the response by calling the callback", function (done) {
+            const body = "hello world!";
+            const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
+                expect(res.body).to.be.a('string').and.equal(body);
+                done();
+            });
+
+            controller.body(body);
+            controller.send();
+        });
+
+        it("should send an object as serialized json with the correct MIME type", function (done) {
+            const body = {foo: "bar"};
+            const mime = "application/json";
+            const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
+                expect(res.body).to.be.a('string').and.equal(JSON.stringify(body));
+                expect(res.headers["Content-Type"]).to.be.a("string").and.equal(mime);
+                done();
+            });
+
+            controller.sendJson(body);
+        });
+
+        it("should send an HTTP Error response with the correct status code and message", function (done) {
+            const code = 403;
+            const body = "You are not allowed to access this resource";
+            const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
+                expect(res.body).to.be.a('string').and.equal(body);
+                expect(res.statusCode).to.be.a('number').and.equal(code);
+                done();
+            })
+
+            controller.error(code, body);
+        });
+
+        it("Shold send an HTTP error with a status code of 404 and a message", function (done) {
+            const code = 404;
+            const body = "Resource was not found";
+            const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
+                expect(res.body).to.be.a('string').and.equal(body);
+                expect(res.statusCode).to.be.a('number').and.equal(code);
+                done();
+            })
+
+            controller.notFound();
+        });
+
+        it("Shold send an HTTP error with a status code of 500 and a message", function (done) {
+            const code = 500;
+            const body = "Resource unavailable";
+            const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
+                expect(res.body).to.be.a('string').and.equal(body);
+                expect(res.statusCode).to.be.a('number').and.equal(code);
+                done();
+            })
+
+            controller.serverError();
+        });
+
+        it("Shold send an HTTP error with a status code of 400 and a message", function (done) {
+            const code = 400;
+            const body = "Bad request to resource";
+            const controller = new LambdaController(event.valid, ctx.noop, (err, res) => {
+                expect(res.body).to.be.a('string').and.equal(body);
+                expect(res.statusCode).to.be.a('number').and.equal(code);
+                done();
+            })
+
+            controller.badRequest();
+        });
     });
 
 });
