@@ -83,6 +83,34 @@ describe("LambdaController", () => {
 			expect(controller.response.headers["Content-Type"]).to.be.a("string").and.equal(mime);
 			expect(controller.response.body).to.be.a("string").and.equal(JSON.stringify(obj));
 		});
+
+		it("#add should add a mixin", () => {
+			const string = "bar";
+			const controller = mockController();
+			const mixin = {
+				foo: () => string
+			};
+
+			controller.add(mixin);
+
+			expect(controller.foo()).to.equal(string);
+		});
+
+		it("#add should not override an existing method", () => {
+			const string = "bar";
+			const controller = mockController();
+			const baseMixin = {
+				foo: () => "boo"
+			};
+			const mixin = {
+				foo: () => string
+			};
+
+			controller.add(baseMixin);
+			controller.add(mixin);
+
+			expect(controller.foo()).to.not.equal(string);
+		});
 	});
 
 	describe("Send", () => {

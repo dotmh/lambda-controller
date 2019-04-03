@@ -31,6 +31,24 @@ module.exports = class LambdaController {
 		return this.event.headers;
 	}
 
+	add(mixin) {
+		if (typeof mixin !== "object") {
+			throw new TypeError("You can only add objects");
+		}
+
+		const currentKeys = Object.getOwnPropertyNames(this);
+		const mixinKeys = Object.getOwnPropertyNames(mixin);
+
+		mixinKeys.filter((mixinKey) => currentKeys.lastIndexOf(mixinKey) === -1)
+			.forEach((mixinKey) => {
+				Object.defineProperty(this, mixinKey, {
+					value: mixin[mixinKey]
+				});
+			});
+
+		return this;
+	}
+
 	addHeader(header, value) {
 		this.response.headers[header] = value;
 		return this;
