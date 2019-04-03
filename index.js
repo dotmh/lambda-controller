@@ -33,18 +33,18 @@ module.exports = class LambdaController {
 
 	add(mixin) {
 		if (typeof mixin !== "object") {
-			throw new Error("You can only add objects");
+			throw new TypeError("You can only add objects");
 		}
 
 		const currentKeys = Object.keys(this);
 		const mixinKeys = Object.keys(mixin);
 
 		mixinKeys.filter((mixinKey) => currentKeys.lastIndexOf(mixinKey) === -1)
-				.forEach((mixinKey) => {
-					Object.defineProperty(this, mixinKey, {
-						value: mixin[mixinKey]
-					});
+			.forEach((mixinKey) => {
+				Object.defineProperty(this, mixinKey, {
+					value: mixin[mixinKey]
 				});
+			});
 
 		return this;
 	}

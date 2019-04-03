@@ -84,7 +84,7 @@ describe("LambdaController", () => {
 			expect(controller.response.body).to.be.a("string").and.equal(JSON.stringify(obj));
 		});
 
-		it("#add should add a mixin" , () => {
+		it("#add should add a mixin", () => {
 			const string = "bar";
 			const controller = mockController();
 			const mixin = {
