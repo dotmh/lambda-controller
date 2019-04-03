@@ -95,6 +95,22 @@ describe("LambdaController", () => {
 
 			expect(controller.foo()).to.equal(string);
 		});
+
+		it("#add should not override an existing method", () => {
+			const string = "bar";
+			const controller = mockController();
+			const baseMixin = {
+				foo: () => "boo"
+			}
+			const mixin = {
+				foo: () => string
+			};
+
+			controller.add(baseMixin);
+			controller.add(mixin);
+
+			expect(controller.foo()).to.not.equal(string);			
+		})
 	});
 
 	describe("Send", () => {

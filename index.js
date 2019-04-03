@@ -36,8 +36,8 @@ module.exports = class LambdaController {
 			throw new TypeError("You can only add objects");
 		}
 
-		const currentKeys = Object.keys(this);
-		const mixinKeys = Object.keys(mixin);
+		const currentKeys = Object.getOwnPropertyNames(this);
+		const mixinKeys = Object.getOwnPropertyNames(mixin);
 
 		mixinKeys.filter((mixinKey) => currentKeys.lastIndexOf(mixinKey) === -1)
 			.forEach((mixinKey) => {
