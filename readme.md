@@ -76,6 +76,19 @@ An Object containing the http headers as a key value pair `header: value`
 
 All setting methods are chainable.
 
+#### add
+
+__Params__
+
+- mixin: object - a mixin to the controller class 
+
+__Returns__
+
+- the instance of the controller
+
+Adds a mixin to the controller class 
+*Note* mixins can not override existing methods. 
+
 #### addHeader
 
 __Params__
