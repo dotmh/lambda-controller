@@ -101,7 +101,7 @@ describe("LambdaController", () => {
 			const controller = mockController();
 			const baseMixin = {
 				foo: () => "boo"
-			}
+			};
 			const mixin = {
 				foo: () => string
 			};
@@ -109,8 +109,8 @@ describe("LambdaController", () => {
 			controller.add(baseMixin);
 			controller.add(mixin);
 
-			expect(controller.foo()).to.not.equal(string);			
-		})
+			expect(controller.foo()).to.not.equal(string);
+		});
 	});
 
 	describe("Send", () => {
