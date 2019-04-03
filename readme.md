@@ -86,7 +86,8 @@ __Returns__
 
 - the instance of the controller
 
-Adds a mixin to the controller class 
+Adds a mixin to the controller class.
+
 *Note* mixins can not override existing methods. 
 
 #### addHeader
