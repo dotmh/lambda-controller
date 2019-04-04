@@ -52,6 +52,46 @@ Lastly create a function to call your handler on your controller , and export th
     }    
 ```
 
+Extending
+---------
+To keep the library as small as possible it doesn't include some functionality that
+you may need. This includes POST body handling and also functionality like cookies etc. The system is designed to be extend however. The extention system is based on
+mixin's this are just normal JS objects that are mixed in to the Lambda controller class. 
+
+A mixin that adds a function (method) and getter would look like this 
+
+```js
+    const mixin = {
+        hello: () => "Hello",
+        get bye() {
+            return "Goodbye"
+        }
+    }
+```
+
+You can then add the mixin to Lamda controller using the `add` method.
+
+```js
+    // ...
+    (new MyController(event, ctx, callback)).add(mixin).handler();
+    // ...
+```
+
+Inside your Controller class (the class that exends Lambda Controller) you can use the mixin methods , getters and setters as if they were originally defined on the main Lambda controller class. 
+
+```js
+    const Controller = require('@dotmh/lambda-controller');
+
+    class MyController extends Controller {
+
+        handler() {
+            return this.bye;
+        }
+
+    }
+```
+
+
 API
 ---
 
