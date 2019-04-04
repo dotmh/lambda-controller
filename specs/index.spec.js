@@ -130,14 +130,14 @@ describe("LambdaController", () => {
 
 		it("#add should not allow to extending with non objects", () => {
 			const controller = mockController();
-			
+
 			const fn = () => {
 				controller.add("string");
-			}
+			};
 
 			expect(fn).to.throw("You can only add objects");
 		});
-	})
+	});
 
 	describe("Send", () => {
 		it("should send the response by calling the callback", (done) => {

@@ -33,7 +33,7 @@ module.exports = class LambdaController {
 
 	add(mixin) {
 		if (typeof mixin !== "object") {
-			throw new Error("You can only add objects");
+			throw new TypeError("You can only add objects");
 		}
 
 		const currentKeys = Object.getOwnPropertyNames(this);
