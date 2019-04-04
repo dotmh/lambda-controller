@@ -83,7 +83,9 @@ describe("LambdaController", () => {
 			expect(controller.response.headers["Content-Type"]).to.be.a("string").and.equal(mime);
 			expect(controller.response.body).to.be.a("string").and.equal(JSON.stringify(obj));
 		});
+	});
 
+	describe("Add", () => {
 		it("#add should add a mixin", () => {
 			const string = "bar";
 			const controller = mockController();
@@ -125,7 +127,17 @@ describe("LambdaController", () => {
 
 			expect(controller.foo()).to.not.equal(string);
 		});
-	});
+
+		it("#add should not allow to extending with non objects", () => {
+			const controller = mockController();
+			
+			const fn = () => {
+				controller.add("string");
+			}
+
+			expect(fn).to.throw("You can only add objects");
+		});
+	})
 
 	describe("Send", () => {
 		it("should send the response by calling the callback", (done) => {
