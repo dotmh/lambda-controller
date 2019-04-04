@@ -96,6 +96,20 @@ describe("LambdaController", () => {
 			expect(controller.foo()).to.equal(string);
 		});
 
+		it("#add should add a getter in a mixin", () => {
+			const string = "bar";
+			const controller = mockController();
+			const mixin = {
+				get foo() {
+					return string;
+				}
+			};
+
+			controller.add(mixin);
+
+			expect(controller.foo).to.equal(string);
+		});
+
 		it("#add should not override an existing method", () => {
 			const string = "bar";
 			const controller = mockController();
