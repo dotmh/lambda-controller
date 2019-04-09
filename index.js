@@ -1,3 +1,4 @@
+const MIXIN_INIT = "init";
 module.exports = class LambdaController {
 	constructor(event, ctx, callback) {
 		this.event = event;
@@ -36,15 +37,25 @@ module.exports = class LambdaController {
 			throw new TypeError("You can only add objects");
 		}
 
+		this._mixinInitializers = [];
+
 		const currentKeys = Object.getOwnPropertyNames(this);
 		const mixinKeys = Object.getOwnPropertyNames(mixin);
 
 		mixinKeys.filter((mixinKey) => currentKeys.lastIndexOf(mixinKey) === -1)
 			.forEach((mixinKey) => {
-				Object.defineProperty(this, mixinKey, {
-					value: mixin[mixinKey]
-				});
+				if(mixinKey === MIXIN_INIT) {
+					this._mixinInitializers.push(mixin[mixinKey]);
+				} else {
+					Object.defineProperty(this, mixinKey, {
+						value: mixin[mixinKey]
+					});
+				}
 			});
+
+		if(this._mixinInitializers.length > 0) {
+			this._mixinInitializers.forEach((intializer) => intializer.call(this));
+		}
 
 		return this;
 	}
