@@ -86,7 +86,7 @@ describe("LambdaController", () => {
 	});
 
 	describe("Add", () => {
-		it("#add should add a mixin", () => {
+		it("should add a mixin", () => {
 			const string = "bar";
 			const controller = mockController();
 			const mixin = {
@@ -98,7 +98,7 @@ describe("LambdaController", () => {
 			expect(controller.foo()).to.equal(string);
 		});
 
-		it("#add should add a getter in a mixin", () => {
+		it("should add a getter in a mixin", () => {
 			const string = "bar";
 			const controller = mockController();
 			const mixin = {
@@ -112,7 +112,21 @@ describe("LambdaController", () => {
 			expect(controller.foo).to.equal(string);
 		});
 
-		it("#add should not override an existing method", () => {
+		it("should fire the init of all mixins after adding them", () => {
+			const string = "foobar";
+			const controller = mockController();
+			const mixin = {
+				init() {
+					this.bar = string
+				}
+			}
+
+			controller.add(mixin);
+
+			expect(controller.bar).to.equal(string);
+		});
+
+		it("should not override an existing method", () => {
 			const string = "bar";
 			const controller = mockController();
 			const baseMixin = {
