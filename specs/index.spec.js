@@ -117,9 +117,9 @@ describe("LambdaController", () => {
 			const controller = mockController();
 			const mixin = {
 				init() {
-					this.bar = string
+					this.bar = string;
 				}
-			}
+			};
 
 			controller.add(mixin);
 
