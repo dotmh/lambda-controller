@@ -77,7 +77,7 @@ You can then add the mixin to Lamda controller using the `add` method.
     // ...
 ```
 
-Inside your Controller class (the class that exends Lambda Controller) you can use the mixin methods , getters and setters as if they were originally defined on the main Lambda controller class. 
+Inside your Controller class (the class that extends Lambda Controller) you can use the mixin methods , getters and setters as if they were originally defined on the main Lambda controller class. 
 
 ```js
     const Controller = require('@dotmh/lambda-controller');
@@ -90,6 +90,29 @@ Inside your Controller class (the class that exends Lambda Controller) you can u
 
     }
 ```
+
+### Initialising
+
+You may want to do somethings on intialization of the extending mixin. Normally you would use the 
+constructor for this but because of the way the addon system work, the constructor A) Can not be overridden or extends , and B) would have already fired. For this purpose you can use an "init" 
+function. 
+
+To use an init function declare a function called `init` on your mixin. 
+
+```js 
+    const mixin = {
+        init() {
+            // ... do something   
+        },
+        get foo() {
+            return "bar"
+        }
+    }
+```
+
+your init function wont appear on the Controller after it has been added, but will be called when 
+the mixin is added to the controller class. It is called in the content of the controller so 
+`this` will refer to the controller object. 
 
 
 API
