@@ -151,6 +151,17 @@ describe("LambdaController", () => {
 
 			expect(fn).to.throw("You can only add objects");
 		});
+
+		it("should allow access to internal vars", () => {
+			const controller = mockController();
+			const mixin = {
+				foo: () => this.event
+			}
+
+			controller.add(mixin);
+
+			expect(controller.foo()).to.deep.equal(event.valid);
+		})
 	});
 
 	describe("Send", () => {
