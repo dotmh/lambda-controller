@@ -44,12 +44,11 @@ module.exports = class LambdaController {
 
 		mixinKeys.filter((mixinKey) => currentKeys.lastIndexOf(mixinKey) === -1)
 			.forEach((mixinKey) => {
+				
 				if (mixinKey === MIXIN_INIT) {
 					this._mixinInitializers.push(mixin[mixinKey]);
 				} else {
-					Object.defineProperty(this, mixinKey, {
-						value: mixin[mixinKey]
-					});
+					Object.defineProperty(this, mixinKey, Object.getOwnPropertyDescriptor(mixin, mixinKey));
 				}
 			});
 
