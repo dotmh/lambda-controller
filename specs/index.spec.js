@@ -31,7 +31,12 @@ describe("LambdaController", () => {
 
 		it("should return the http headers as an object of header/value", () => {
 			const controller = mockController();
-			expect(controller.headers).to.be.an("object").and.equal(event.valid.headers);
+			const mockHeaders = {};
+			Object.entries(event.valid.headers).forEach(([key, value]) => {
+				mockHeaders[key.toLowerCase()] = value;
+			});
+
+			expect(controller.headers).to.be.an("object").and.deep.equal(mockHeaders);
 		});
 
 		it("Should return the path params as an object of param/value", () => {

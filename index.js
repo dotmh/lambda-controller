@@ -10,6 +10,8 @@ module.exports = class LambdaController {
 			headers: {},
 			body: ""
 		};
+
+		this.normalizedHeaders = null;
 	}
 
 	get query() {
@@ -29,7 +31,10 @@ module.exports = class LambdaController {
 	}
 
 	get headers() {
-		return this.event.headers;
+		if(this.normalizedHeaders === null) {
+			this._normalizeHeaders();
+		}
+		return this.normalizedHeaders;
 	}
 
 	add(mixin) {
@@ -107,5 +112,12 @@ module.exports = class LambdaController {
 
 	badRequest() {
 		this.error(400, "Bad request to resource");
+	}
+
+	_normalizeHeaders() {
+		this.normalizedHeaders = {};
+		Object.entries(this.event.headers).forEach(([key, value]) => {
+			this.normalizedHeaders[key.toLowerCase()] = value;
+		});
 	}
 };
