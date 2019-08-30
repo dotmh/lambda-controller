@@ -27,13 +27,20 @@ class LambdaController {
 
 	/**
 	 * Gets the Query String as an Object
-	 * @returns {object}  returns an Object containing a key/value pair for each query parameter
+	 * @type {object}
+	 * 	@property {string} key the key of Query string
+	 *  @property {string} value the value in the query string
 	 * @author Martin Haynes <oss@dotmh.io>
 	 */
 	get query() {
 		return this.event.queryStringParameters;
 	}
 
+	/**
+	 * Gets the current path
+	 * @type {string}
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	get path() {
 		return this.event.path;
 	}
