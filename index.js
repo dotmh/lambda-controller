@@ -1,5 +1,16 @@
 const MIXIN_INIT = "init";
-module.exports = class LambdaController {
+
+/**
+ * Create a new instance of the controller
+ * @param {object} event An Object supplied by AWS Lambda containing the event data from API Gateway
+ * @param {object} ctx The Context object supplied by AWS Lambda
+ * @param {function} callback The callback to trigger and send the response back to API Gateway
+ * 
+ * @class
+ * @classdesc The base class for Lambda Controllers intended to be extended
+ * @author Martin Haynes <oss@dotmh.io>
+ */
+class LambdaController {
 	constructor(event, ctx, callback) {
 		this.event = event;
 		this.ctx = ctx;
@@ -14,6 +25,11 @@ module.exports = class LambdaController {
 		this.normalizedHeaders = null;
 	}
 
+	/**
+	 * Gets the Query String as an Object
+	 * @returns {object}  returns an Object containing a key/value pair for each query parameter
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	get query() {
 		return this.event.queryStringParameters;
 	}
@@ -121,3 +137,5 @@ module.exports = class LambdaController {
 		});
 	}
 };
+
+module.exports = LambdaController;
