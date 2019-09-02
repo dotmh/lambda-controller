@@ -118,3 +118,4 @@ the mixin is added to the controller class. It is called in the content of the c
 API
 ---
 
+<https://dotmh.github.io/lambda-controller/>
