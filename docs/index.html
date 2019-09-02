@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">DotMH - Lambda Controller</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://www.dotmh.io" target="_blank">dotm.io</a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="LambdaController.html">LambdaController</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Title</p>
+                        <h1>Home</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Serverless Lambda Controller</h1>
+<p><a href="https://www.dotmh.io"><img src="https://img.shields.io/badge/DotMH-Future%20Gadget%20Lab-red.svg?style=flat-square" alt="DotMH Future Gadget Lab"></a>
+<a href="https://github.com/xojs/xo"><img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg" alt="XO code style"></a>
+<a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dotmh/lambda-controller&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/d50a385134dd448cb574a137d53dc022" alt="Codacy Badge"></a>
+<a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dotmh/lambda-controller&amp;utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/d50a385134dd448cb574a137d53dc022" alt="Codacy Badge"></a>
+<a href="https://semaphoreci.com/dotmh/lambda-controller"><img src="https://semaphoreci.com/api/v1/projects/723304e2-be24-4db6-9ebb-5f1f250b9841/2579135/badge.svg" alt="Build Status"></a></p>
+<p>A class to help make lambda function behind AWS API Gateway.</p>
+<p>It exposes some common methods to allow you to use Lambda behind API Gateway more as you would making a normal HTTP app.</p>
+<p>to use create a new controller</p>
+<pre class="prettyprint source lang-js"><code>    const controller = require('@dotmh/lambda-controller');
+
+    class MyController extends controller {}
+</code></pre>
+<p>you then need to declare a method or methods to handle your requests</p>
+<pre class="prettyprint source lang-js"><code>    const controller = require('@dotmh/lambda-controller');
+
+    class MyController extends controller {
+
+        handler() {
+            // Your logic goes here
+        }
+
+    }
+</code></pre>
+<p>This will contain your functions logic for that request</p>
+<p>Lastly create a function to call your handler on your controller , and export the function as your serverless function</p>
+<pre class="prettyprint source lang-js"><code>    const controller = require('@dotmh/lambda-controller');
+
+    class MyController extends controller {
+
+        handler() {
+            // Your logic goes here
+        }
+
+    }
+
+    module.exports.handler = (event, ctx, callback) => {
+        (new MyController(event, ctx, callback)).handler();
+    }    
+</code></pre>
+<h2>Extending</h2>
+<p>To keep the library as small as possible it doesn't include some functionality that
+you may need. This includes POST body handling and also functionality like cookies etc. The system is designed to be extend however. The extention system is based on
+mixin's this are just normal JS objects that are mixed in to the Lambda controller class.</p>
+<p>A mixin that adds a function (method) and getter would look like this</p>
+<pre class="prettyprint source lang-js"><code>    const mixin = {
+        hello: () => &quot;Hello&quot;,
+        get bye() {
+            return &quot;Goodbye&quot;
+        }
+    }
+</code></pre>
+<p>You can then add the mixin to Lamda controller using the <code>add</code> method.</p>
+<pre class="prettyprint source lang-js"><code>    // ...
+    (new MyController(event, ctx, callback)).add(mixin).handler();
+    // ...
+</code></pre>
+<p>Inside your Controller class (the class that extends Lambda Controller) you can use the mixin methods , getters and setters as if they were originally defined on the main Lambda controller class.</p>
+<pre class="prettyprint source lang-js"><code>    const Controller = require('@dotmh/lambda-controller');
+
+    class MyController extends Controller {
+
+        handler() {
+            return this.bye;
+        }
+
+    }
+</code></pre>
+<h3>Initialising</h3>
+<p>You may want to do somethings on intialization of the extending mixin. Normally you would use the
+constructor for this but because of the way the addon system work, the constructor A) Can not be overridden or extends , and B) would have already fired. For this purpose you can use an &quot;init&quot;
+function.</p>
+<p>To use an init function declare a function called <code>init</code> on your mixin.</p>
+<pre class="prettyprint source lang-js"><code>    const mixin = {
+        init() {
+            // ... do something   
+        },
+        get foo() {
+            return &quot;bar&quot;
+        }
+    }
+</code></pre>
+<p>your init function wont appear on the Controller after it has been added, but will be called when
+the mixin is added to the controller class. It is called in the content of the controller so
+<code>this</code> will refer to the controller object.</p>
+<h2>API</h2></article>
+    </section>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Sep 02 2019 09:13:42 GMT+0100 (British Summer Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
+        </p>
+    </div>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

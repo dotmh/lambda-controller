@@ -1,5 +1,21 @@
 {
 	"plugins" : [
 		"plugins/markdown"
-	]
+	],
+	"opts": {
+		"template": "node_modules/better-docs",
+		"readme" : "./readme.md",
+		"destination" : "docs"
+	},
+	"templates": {
+		"better-docs": {
+			"name": "DotMH - Lambda Controller",
+			"navigation": [
+                {
+                    "label": "dotm.io",
+                    "href": "https://www.dotmh.io"
+				}
+			]
+		}
+	}
 }
