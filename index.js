@@ -45,6 +45,16 @@ class LambdaController {
 		return this.event.path;
 	}
 
+	/**
+	 * Get the Path paramteres as a key value pair object 
+	 * @type {object}
+	 * 	@property {string} key the name of the path parameter
+	 *  @property {string} value the value of the path parameter
+	 * @example 
+	 * // route /foo/:id, with url /foo/bar
+	 * this.params // => {id: "bar"}
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	get params() {
 		return this.event.pathParameters;
 	}
