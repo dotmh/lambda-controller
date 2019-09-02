@@ -59,10 +59,22 @@ class LambdaController {
 		return this.event.pathParameters;
 	}
 
+	/**
+	 * Returns the HTTP Method (aka Verb) i.e. POST, GET, PATCH, DELETE, PUT
+	 * @type {string}
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	get method() {
 		return this.event.httpMethod;
 	}
 
+	/**
+	 * Gets the Request headers, these will always be in lowercase i.e content-type
+	 * @type {object}
+	 * 	@property {string} header the header name i.e. content-type
+	 *	@property {*} value the value of the header
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	get headers() {
 		if(this.normalizedHeaders === null) {
 			this._normalizeHeaders();
