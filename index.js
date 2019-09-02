@@ -82,6 +82,21 @@ class LambdaController {
 		return this.normalizedHeaders;
 	}
 
+	/**
+	 * Adds a Mixin in to the base class
+	 * @param {object} mixin The object to be mixed in
+	 * @returns {LambdaController} An instance of the class
+	 * @example
+	 * this.add({
+	 *	get a() {
+	 * 		return "a";
+	 * 	},
+	 *	b() {
+	 *		return "b";
+	 * 	}
+	 * });
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	add(mixin) {
 		if (typeof mixin !== "object") {
 			throw new TypeError("You can only add objects");
@@ -109,56 +124,153 @@ class LambdaController {
 		return this;
 	}
 
+	/**
+	 * Adds a response header
+	 * @param {string} header The header name
+	 * @param {*} value The header value 
+	 * @returns {LambdaController} An instance of the class
+	 * @example 
+	 * lambdaController.addHeader("content-type", "application/json")
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	addHeader(header, value) {
 		this.response.headers[header] = value;
 		return this;
 	}
 
+	/**
+	 * Changes the responses http Status code 
+	 * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+	 * @param {number} code The HTTP reponse codes
+	 * @returns {LambdaController} An instance of the class
+	 * @example
+	 * lambdaController.status(200);
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	status(code) {
 		this.response.statusCode = code;
 		return this;
 	}
 
+	/**
+	 * Sets the response body
+	 * @param {*} string The response body
+	 * @returns {LambdaController} An instance of the class
+	 * @example
+	 * lambdaController.body(`
+	 * <html>
+	 * 	<head>
+	 * 		<title>foobar</title>
+	 * 	</head>
+	 * 	<body>
+	 * 		hello
+	 * 	</body>
+	 * </html>
+	 * `);
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	body(string) {
 		this.response.body = string;
 		return this;
 	}
 
+	/**
+	 * Sets the content type on the response
+	 *
+	 * Sets the body to a JSON serialised string, as well sets the content-type correctly
+	 * @param {string} type A valid mime type to set the content type to
+	 * @returns {LambdaController} An instance of the class
+	 * @example
+	 * lambdaController.type("applicaiton/json");
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	type(type) {
 		this.addHeader("Content-Type", type);
 		return this;
 	}
 
+	/**
+	 * Sets up the response to respond in JSON
+	 * @param {object | array} object The Object or Array to serialize in to the response
+	 * @return {LambdaController} An instance of the class
+	 * @example
+	 * lambdaController.json({foo: "bar", a: 1});
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	json(object) {
 		this.type("application/json");
 		this.body(JSON.stringify(object));
 		return this;
 	}
 
+	/**
+	 * Sets up and sends the response in JSON, 
+	 * @param {object | array} object The Object or Array to serialize in to the response
+	 * @example
+	 * lambdaController.sendJson({foo: "bar", a: 1});
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	sendJson(object) {
 		this.json(object).send();
 	}
 
+	/**
+	 * Sends the response
+	 * @example
+	 * lambdaController.send();
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	send() {
 		this.callback(null, this.response);
 	}
 
+	/**
+	 * Sends an HTTP error response
+	 * @param {number} code The http status code to use
+	 * @param {string} message The error message for the end user
+	 * @example
+	 * lambdaController.error(404, "Resource was not found")
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	error(code, message) {
 		this.status(code).type("text/plain").body(message).send();
 	}
 
+	/**
+	 * Sends a prefab Not Found (404) error back to the end user
+	 * @example
+	 * lambdaController.notFound();
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	notFound() {
 		this.error(404, "Resource was not found");
 	}
 
+		/**
+	 * Sends a prefab Internal Server Error (500) error back to the end user
+	 * @example
+	 * lambdaController.serverError();
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	serverError() {
 		this.error(500, "Resource unavailable");
 	}
 
+	/**
+	 * Sends a prefab Bad Request(400) error back to the end user
+	 * @example
+	 * lambdaController.badRequest();
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	badRequest() {
 		this.error(400, "Bad request to resource");
 	}
 
+	/**
+	 * Goes through and makes all the header names lowercase 
+	 * @private
+	 * @author Martin Haynes <oss@dotmh.io>
+	 */
 	_normalizeHeaders() {
 		this.normalizedHeaders = {};
 		Object.entries(this.event.headers).forEach(([key, value]) => {
