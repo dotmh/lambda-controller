@@ -6,3 +6,4 @@ specs
 .idea
 jsdoc.json
 out
+.semaphore
