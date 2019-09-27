@@ -5,7 +5,7 @@ const MIXIN_INIT = "init";
  * @param {object} event An Object supplied by AWS Lambda containing the event data from API Gateway
  * @param {object} ctx The Context object supplied by AWS Lambda
  * @param {function} callback The callback to trigger and send the response back to API Gateway
- * 
+ *
  * @class
  * @classdesc The base class for Lambda Controllers intended to be extended
  * @author Martin Haynes <oss@dotmh.io>
@@ -46,11 +46,11 @@ class LambdaController {
 	}
 
 	/**
-	 * Get the Path paramteres as a key value pair object 
+	 * Get the Path paramteres as a key value pair object
 	 * @type {object}
 	 * 	@property {string} key the name of the path parameter
 	 *  @property {string} value the value of the path parameter
-	 * @example 
+	 * @example
 	 * // route /foo/:id, with url /foo/bar
 	 * this.params // => {id: "bar"}
 	 * @author Martin Haynes <oss@dotmh.io>
@@ -76,9 +76,10 @@ class LambdaController {
 	 * @author Martin Haynes <oss@dotmh.io>
 	 */
 	get headers() {
-		if(this.normalizedHeaders === null) {
+		if (this.normalizedHeaders === null) {
 			this._normalizeHeaders();
 		}
+
 		return this.normalizedHeaders;
 	}
 
@@ -109,7 +110,6 @@ class LambdaController {
 
 		mixinKeys.filter((mixinKey) => currentKeys.lastIndexOf(mixinKey) === -1)
 			.forEach((mixinKey) => {
-				
 				if (mixinKey === MIXIN_INIT) {
 					this._mixinInitializers.push(mixin[mixinKey]);
 				} else {
@@ -127,9 +127,9 @@ class LambdaController {
 	/**
 	 * Adds a response header
 	 * @param {string} header The header name
-	 * @param {*} value The header value 
+	 * @param {*} value The header value
 	 * @returns {LambdaController} An instance of the class
-	 * @example 
+	 * @example
 	 * lambdaController.addHeader("content-type", "application/json")
 	 * @author Martin Haynes <oss@dotmh.io>
 	 */
@@ -139,7 +139,7 @@ class LambdaController {
 	}
 
 	/**
-	 * Changes the responses http Status code 
+	 * Changes the responses http Status code
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 	 * @param {number} code The HTTP reponse codes
 	 * @returns {LambdaController} An instance of the class
@@ -204,7 +204,7 @@ class LambdaController {
 	}
 
 	/**
-	 * Sets up and sends the response in JSON, 
+	 * Sets up and sends the response in JSON,
 	 * @param {object | array} object The Object or Array to serialize in to the response
 	 * @example
 	 * lambdaController.sendJson({foo: "bar", a: 1});
@@ -246,7 +246,7 @@ class LambdaController {
 		this.error(404, "Resource was not found");
 	}
 
-		/**
+	/**
 	 * Sends a prefab Internal Server Error (500) error back to the end user
 	 * @example
 	 * lambdaController.serverError();
@@ -267,7 +267,7 @@ class LambdaController {
 	}
 
 	/**
-	 * Goes through and makes all the header names lowercase 
+	 * Goes through and makes all the header names lowercase
 	 * @private
 	 * @author Martin Haynes <oss@dotmh.io>
 	 */
@@ -277,6 +277,6 @@ class LambdaController {
 			this.normalizedHeaders[key.toLowerCase()] = value;
 		});
 	}
-};
+}
 
 module.exports = LambdaController;
