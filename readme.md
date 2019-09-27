@@ -4,7 +4,7 @@ Serverless Lambda Controller
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d50a385134dd448cb574a137d53dc022)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dotmh/lambda-controller&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d50a385134dd448cb574a137d53dc022)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=dotmh/lambda-controller&utm_campaign=Badge_Coverage)
-[![Build Status](https://semaphoreci.com/api/v1/projects/723304e2-be24-4db6-9ebb-5f1f250b9841/2579135/badge.svg)](https://semaphoreci.com/dotmh/lambda-controller)
+[![Build Status](https://semaphoreci.com/api/v1/projects/723304e2-be24-4db6-9ebb-5f1f250b9841/2579135/badge.svg)](https://semaphoreci.com/dotmh/lambda-controller) [![Greenkeeper badge](https://badges.greenkeeper.io/dotmh/lambda-controller.svg?token=f4798213d338dd28ddb302eb1f782bcaa9c28e4570dbefa10131dc9280e7ce83&ts=1568120866930)](https://greenkeeper.io/)
 
 A class to help make lambda function behind AWS API Gateway. 
 
@@ -117,5 +117,4 @@ the mixin is added to the controller class. It is called in the content of the c
 
 API
 ---
-
-<https://dotmh.github.io/lambda-controller/>
+<https://dotmh.github.io/lambda-controller>
