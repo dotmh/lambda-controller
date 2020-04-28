@@ -45,7 +45,7 @@
     ]
   },
   "devDependencies": {
-    "better-docs": "^1.1.6",
+    "better-docs": "^2.0.0",
     "chai": "^4.2.0",
     "codacy-coverage": "^3.4.0",
     "jsdoc": "^3.6.3",
