@@ -1,6 +1,6 @@
 Serverless Lambda Controller
 ============================
-[![DotMH Future Gadget Lab](https://img.shields.io/badge/DotMH-Future%20Gadget%20Lab-red.svg?style=flat-square)](https://www.dotmh.io)
+[![DotMH Future Gadget Lab](https://img.shields.io/badge/DotMH-.dev-red.svg?style=flat-square)](https://www.dotmh.io)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d50a385134dd448cb574a137d53dc022)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dotmh/lambda-controller&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d50a385134dd448cb574a137d53dc022)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=dotmh/lambda-controller&utm_campaign=Badge_Coverage)
@@ -10,7 +10,19 @@ A class to help make lambda function behind AWS API Gateway.
 
 It exposes some common methods to allow you to use Lambda behind API Gateway more as you would making a normal HTTP app. 
 
-to use create a new controller 
+Installation 
+============
+
+To install 
+
+```bash
+npm i @dotmh/lamda-controller
+```
+
+Usage
+=====
+
+Create a new controller 
 
 ```js
     const controller = require('@dotmh/lambda-controller');
@@ -18,7 +30,7 @@ to use create a new controller
     class MyController extends controller {}
 ```
 
-you then need to declare a method or methods to handle your requests
+You then need to declare a method or methods to handle your requests
 
 ```js
     const controller = require('@dotmh/lambda-controller');
@@ -51,6 +63,8 @@ Lastly create a function to call your handler on your controller , and export th
         (new MyController(event, ctx, callback)).handler();
     }    
 ```
+
+For API , see Documentation
 
 Extending
 ---------
@@ -115,6 +129,12 @@ the mixin is added to the controller class. It is called in the content of the c
 `this` will refer to the controller object. 
 
 
-API
----
-<https://dotmh.github.io/lambda-controller>
+Documentation
+-------------
+For the API documentation see <https://dotmh.github.io/lambda-controller>
+
+Or to read locally 
+
+```
+npm run readdocs
+```
