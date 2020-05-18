@@ -7,7 +7,8 @@
     "test": "npx nyc mocha --recursive specs/*.spec.js --exit",
     "test-with-coverage": "npx nyc mocha --recursive specs/*.spec.js && cat ./coverage/lcov.info | codacy-coverage",
     "docs": "npx jsdoc -c ./jsdoc.json index.js",
-    "lint": "npx xo"
+    "lint": "npx xo",
+    "readdocs": "npm run docs && npx http-server ./docs"
   },
   "repository": {
     "type": "git",

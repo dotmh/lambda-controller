@@ -10,7 +10,19 @@ A class to help make lambda function behind AWS API Gateway.
 
 It exposes some common methods to allow you to use Lambda behind API Gateway more as you would making a normal HTTP app. 
 
-to use create a new controller 
+Installation 
+============
+
+To install 
+
+```bash
+npm i @dotmh/lamda-controller
+```
+
+Usage
+=====
+
+Create a new controller 
 
 ```js
     const controller = require('@dotmh/lambda-controller');
@@ -18,7 +30,7 @@ to use create a new controller
     class MyController extends controller {}
 ```
 
-you then need to declare a method or methods to handle your requests
+You then need to declare a method or methods to handle your requests
 
 ```js
     const controller = require('@dotmh/lambda-controller');
@@ -51,6 +63,8 @@ Lastly create a function to call your handler on your controller , and export th
         (new MyController(event, ctx, callback)).handler();
     }    
 ```
+
+For API , see Documentation
 
 Extending
 ---------
@@ -115,6 +129,12 @@ the mixin is added to the controller class. It is called in the content of the c
 `this` will refer to the controller object. 
 
 
-API
----
-<https://dotmh.github.io/lambda-controller>
+Documentation
+-------------
+For the API documentation see <https://dotmh.github.io/lambda-controller>
+
+Or to read locally 
+
+```
+npm run readdocs
+```
