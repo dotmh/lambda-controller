@@ -1,3 +1,5 @@
+![Lambda Controller Logo](logo.svg)
+
 Serverless Lambda Controller
 ============================
 [![DotMH Future Gadget Lab](https://img.shields.io/badge/DotMH-.dev-red.svg?style=flat-square)](https://www.dotmh.io)
@@ -129,7 +131,6 @@ your init function wont appear on the Controller after it has been added, but wi
 the mixin is added to the controller class. It is called in the content of the controller so 
 `this` will refer to the controller object. 
 
-
 Documentation
 -------------
 For the API documentation see <https://dotmh.github.io/lambda-controller>
@@ -143,3 +144,9 @@ npm run readdocs
 ## Licence            
 
 This package is [Treeware](https://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/dotmh/lambda-controller) to thank us for our work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats.
+
+Credits
+-------
+
+Logo design by [@dotmh](https://www.dotmh.io)
+
