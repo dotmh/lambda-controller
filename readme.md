@@ -1,4 +1,4 @@
-![Lambda Controller Logo](logo.svg)
+![Lambda Controller Logo](https://raw.githubusercontent.com/dotmh/lambda-controller/master/logo.svg)
 
 Serverless Lambda Controller
 ============================
@@ -8,6 +8,8 @@ Serverless Lambda Controller
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d50a385134dd448cb574a137d53dc022)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=dotmh/lambda-controller&utm_campaign=Badge_Coverage)
 [![Build Status](https://semaphoreci.com/api/v1/projects/723304e2-be24-4db6-9ebb-5f1f250b9841/2579135/badge.svg)](https://semaphoreci.com/dotmh/lambda-controller)
 [![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen?style=flat-square)](https://plant.treeware.earth/dotmh/lambda-controller)
+![NPM](https://img.shields.io/npm/l/@dotmh/lambda-controller?style=flat-square)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@dotmh/lambda-controller?style=flat-square)
 
 A class to help make lambda function behind AWS API Gateway. 
 
