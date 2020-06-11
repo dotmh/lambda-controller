@@ -10,6 +10,8 @@ Serverless Lambda Controller
 [![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen?style=flat-square)](https://plant.treeware.earth/dotmh/lambda-controller)
 ![NPM](https://img.shields.io/npm/l/@dotmh/lambda-controller?style=flat-square)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/@dotmh/lambda-controller?style=flat-square)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+
 
 A class to help make lambda function behind AWS API Gateway. 
 
