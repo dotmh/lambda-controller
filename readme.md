@@ -51,7 +51,7 @@ You then need to declare a method or methods to handle your requests
 
 This will contain your functions logic for that request 
 
-Lastly create a function to call your handler on your controller , and export the function as your serverless function 
+Lastly create a function to call the handler on your controller, and export the function as your serverless function 
 
 ```js
     const controller = require('@dotmh/lambda-controller');
@@ -74,8 +74,8 @@ For API , see Documentation
 Extending
 ---------
 To keep the library as small as possible it doesn't include some functionality that
-you may need. This includes POST body handling and also functionality like cookies etc. The system is designed to be extend however. The extention system is based on
-mixin's this are just normal JS objects that are mixed in to the Lambda controller class. 
+you may need. This includes request body handling and also functionality like cookies etc. However, the system is designed to be extended. The extention system is based on
+mixin's these are just normal JS objects that are mixed in to the Lambda controller class. 
 
 A mixin that adds a function (method) and getter would look like this 
 
@@ -112,8 +112,7 @@ Inside your Controller class (the class that extends Lambda Controller) you can 
 
 ### Initialising
 
-You may want to do somethings on intialization of the extending mixin. Normally you would use the 
-constructor for this but because of the way the addon system work, the constructor A) Can not be overridden or extends , and B) would have already fired. For this purpose you can use an "init" 
+You may want to do somethings on intialization of the extending mixin. Normally you would use the constructor for this but because of the way the addon system works, the constructor A) Can not be overridden or extended, and B) would have already have been invoked. For this purpose you can use an "init" 
 function. 
 
 To use an init function declare a function called `init` on your mixin. 
@@ -129,8 +128,8 @@ To use an init function declare a function called `init` on your mixin.
     }
 ```
 
-your init function wont appear on the Controller after it has been added, but will be called when 
-the mixin is added to the controller class. It is called in the content of the controller so 
+Your init function wont appear on the Controller after it has been added, but will be called when 
+the mixin is added to the controller class. It is called in the context of the controller so 
 `this` will refer to the controller object. 
 
 Plugins
