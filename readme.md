@@ -133,6 +133,26 @@ your init function wont appear on the Controller after it has been added, but wi
 the mixin is added to the controller class. It is called in the content of the controller so 
 `this` will refer to the controller object. 
 
+Plugins
+-------
+[![Lambda Controller Plugin](https://img.shields.io/badge/Plugin-λ%20Controller-red.svg?style=flat-square&color=F15024)](https://github.com/dotmh/lambda-controller)
+
+DotMH has created a number of plugins to add extra functionality to Lambda Controller
+
+### Lamdda Controler Request Body
+Adds Request body handling to Lambda Controller
+
+<a href="https://github.com/dotmh/lambda-controller-request-body">
+<img src="https://github.com/dotmh/lambda-controller-request-body/raw/master/logo.svg" width="200px" alt="Lambda Controller">
+</a>
+
+### Lambda Controller Cors
+Adds Cross Origin Resource Sharing support Lambda Controller
+
+<a href="https://github.com/dotmh/lambda-controller-cors">
+<img src="https://raw.githubusercontent.com/dotmh/lambda-controller-cors/master/logo.svg" width="200px" alt="Lambda Controller">
+</a>
+
 Documentation
 -------------
 For the API documentation see <https://dotmh.github.io/lambda-controller>
