@@ -16,7 +16,7 @@ A class to help make lambda function behind AWS API Gateway.
 
 It exposes some common methods to allow you to use Lambda behind API Gateway more as you would making a normal HTTP app.
 
-# Installation
+## Installation
 
 To install
 
@@ -24,7 +24,7 @@ To install
 npm i @dotmh/lamda-controller
 ```
 
-# Usage
+## Usage
 
 Create a new controller
 
@@ -66,7 +66,7 @@ module.exports.handler = (event, ctx, callback) => {
 
 For API , see Documentation
 
-## Extending
+### Extending
 
 To keep the library as small as possible it doesn't include some functionality that
 you may need. This includes request body handling and also functionality like cookies etc. However, the system is designed to be extended. The extention system is based on
@@ -103,7 +103,7 @@ class MyController extends Controller {
 }
 ```
 
-### Initialising
+#### Initialising
 
 You may want to do somethings on intialization of the extending mixin. Normally you would use the constructor for this but because of the way the addon system works, the constructor A) Can not be overridden or extended, and B) would have already have been invoked. For this purpose you can use an "init"
 function.
