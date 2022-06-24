@@ -6,8 +6,7 @@
   "prettier": "@dotmh/prettier-config",
   "scripts": {
     "build": "tsc",
-    "test": "npx nyc mocha --recursive specs/*.spec.js --exit",
-    "test-with-coverage": "npx nyc mocha --recursive specs/*.spec.js && cat ./coverage/lcov.info | codacy-coverage",
+    "test": "jest",
     "docs": "jsdoc -c ./jsdoc.json index.js",
     "lint": "eslint index.js",
     "readdocs": "npm run docs && npx http-server ./docs",
