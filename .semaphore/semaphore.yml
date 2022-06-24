@@ -41,7 +41,7 @@ blocks:
           - cache restore
   - name: Deploy
     skip:
-      when: "branch != 'master'"
+      when: "branch != 'main'"
     task:
       secrets:
         - name: npm
