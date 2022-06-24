@@ -13,6 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
+import {APIGatewayProxyEvent, Callback, Context} from 'aws-lambda';
+
+export interface Mixin {
+  [key: string]: any;
+}
+
+export interface NormalizedHeaders {
+  [header: string]: any;
+}
+
 const MIXIN_INIT = 'init';
 
 /**
@@ -25,13 +36,17 @@ const MIXIN_INIT = 'init';
  * @classdesc The base class for Lambda Controllers intended to be extended
  * @author Martin Haynes <oss@dotmh.io>
  */
-class LambdaController {
+export class LambdaController {
   public response: any;
-  public normalizedHeaders: null | any;
+  public normalizedHeaders: NormalizedHeaders | null;
 
   private mixinInitializers: any[];
 
-  constructor(public event, public ctx, public callback) {
+  constructor(
+    public event: APIGatewayProxyEvent,
+    public ctx: Context,
+    public callback: Callback
+  ) {
     this.response = {
       statusCode: 200,
       headers: {},
@@ -114,7 +129,7 @@ class LambdaController {
    * });
    * @author Martin Haynes <oss@dotmh.io>
    */
-  add(mixin) {
+  add(mixin: Mixin): LambdaController {
     if (typeof mixin !== 'object') {
       throw new TypeError('You can only add objects');
     }
@@ -154,7 +169,7 @@ class LambdaController {
    * lambdaController.addHeader("content-type", "application/json")
    * @author Martin Haynes <oss@dotmh.io>
    */
-  addHeader(header, value) {
+  addHeader(header: string, value: any): LambdaController {
     this.response.headers[header] = value;
     return this;
   }
@@ -168,7 +183,7 @@ class LambdaController {
    * lambdaController.status(200);
    * @author Martin Haynes <oss@dotmh.io>
    */
-  status(code) {
+  status(code: number): LambdaController {
     this.response.statusCode = code;
     return this;
   }
@@ -190,7 +205,7 @@ class LambdaController {
    * `);
    * @author Martin Haynes <oss@dotmh.io>
    */
-  body(string) {
+  body(string: string): LambdaController {
     this.response.body = string;
     return this;
   }
@@ -205,7 +220,7 @@ class LambdaController {
    * lambdaController.type("applicaiton/json");
    * @author Martin Haynes <oss@dotmh.io>
    */
-  type(type) {
+  type(type: string): LambdaController {
     this.addHeader('Content-Type', type);
     return this;
   }
@@ -218,7 +233,7 @@ class LambdaController {
    * lambdaController.json({foo: "bar", a: 1});
    * @author Martin Haynes <oss@dotmh.io>
    */
-  json(object) {
+  json(object: any): LambdaController {
     this.type('application/json');
     this.body(JSON.stringify(object));
     return this;
@@ -231,7 +246,7 @@ class LambdaController {
    * lambdaController.sendJson({foo: "bar", a: 1});
    * @author Martin Haynes <oss@dotmh.io>
    */
-  sendJson(object) {
+  sendJson(object: any): void {
     this.json(object).send();
   }
 
@@ -241,7 +256,7 @@ class LambdaController {
    * lambdaController.send();
    * @author Martin Haynes <oss@dotmh.io>
    */
-  send() {
+  send(): void {
     this.callback(null, this.response);
   }
 
@@ -253,7 +268,7 @@ class LambdaController {
    * lambdaController.error(404, "Resource was not found")
    * @author Martin Haynes <oss@dotmh.io>
    */
-  error(code, message) {
+  error(code: number, message: string): void {
     this.status(code).type('text/plain').body(message).send();
   }
 
@@ -263,7 +278,7 @@ class LambdaController {
    * lambdaController.notFound();
    * @author Martin Haynes <oss@dotmh.io>
    */
-  notFound() {
+  notFound(): void {
     this.error(404, 'Resource was not found');
   }
 
@@ -273,7 +288,7 @@ class LambdaController {
    * lambdaController.serverError();
    * @author Martin Haynes <oss@dotmh.io>
    */
-  serverError() {
+  serverError(): void {
     this.error(500, 'Resource unavailable');
   }
 
@@ -283,7 +298,7 @@ class LambdaController {
    * lambdaController.badRequest();
    * @author Martin Haynes <oss@dotmh.io>
    */
-  badRequest() {
+  badRequest(): void {
     this.error(400, 'Bad request to resource');
   }
 
@@ -292,12 +307,10 @@ class LambdaController {
    * @private
    * @author Martin Haynes <oss@dotmh.io>
    */
-  _normalizeHeaders() {
+  private _normalizeHeaders(): void {
     this.normalizedHeaders = {};
     Object.entries(this.event.headers).forEach(([key, value]) => {
       this.normalizedHeaders[key.toLowerCase()] = value;
     });
   }
 }
-
-module.exports = LambdaController;
