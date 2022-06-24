@@ -9,7 +9,7 @@
     "build": "tsc",
     "test": "jest",
     "docs": "jsdoc -c ./jsdoc.json index.js",
-    "lint": "eslint index.js",
+    "lint": "eslint index.ts",
     "readdocs": "npm run docs && npx http-server ./docs",
     "lint:md": "remark ."
   },
