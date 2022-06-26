@@ -17,7 +17,7 @@ export const callback: MockCallbacks = {
 };
 
 export interface MockEvents {
-  [key: string]: Partial<APIGatewayProxyEvent>;
+  [key: string]: APIGatewayProxyEvent;
 }
 
 export const event: MockEvents = {
@@ -58,5 +58,5 @@ export const event: MockEvents = {
       proxy: 'hello',
     },
     body: null,
-  },
+  } as unknown as APIGatewayProxyEvent,
 };
