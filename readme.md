@@ -8,8 +8,6 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/min/@dotmh/lambda-controller?style=for-the-badge)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg?style=for-the-badge)](code_of_conduct.md)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d50a385134dd448cb574a137d53dc022?style=for-the-badge)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=dotmh/lambda-controller&utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d50a385134dd448cb574a137d53dc022)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=dotmh/lambda-controller&utm_campaign=Badge_Coverag)
 [![Build Status](https://semaphoreci.com/api/v1/projects/723304e2-be24-4db6-9ebb-5f1f250b9841/2579135/badge.svg?style=for-the-badge)](https://semaphoreci.com/dotmh/lambda-controller)
 
 A class to help make lambda function behind AWS API Gateway.
