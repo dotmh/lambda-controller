@@ -44,7 +44,7 @@ export class LambdaController {
   private mixinInitializers: any[];
 
   constructor(
-    public event: APIGatewayProxyEvent,
+    public event: Partial<APIGatewayProxyEvent>,
     public ctx: Context,
     public callback: Callback
   ) {

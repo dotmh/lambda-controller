@@ -1,4 +1,4 @@
-const {event, ctx, callback} = require('./mocks');
+import {event, ctx, callback} from './mocks';
 
 import {LambdaController, NormalizedHeaders} from '..';
 
@@ -31,6 +31,11 @@ describe('LambdaController', () => {
     it('should return the http headers as an object of header/value', () => {
       const controller = mockController();
       const mockHeaders: NormalizedHeaders = {};
+
+      if (!event.valid?.headers) {
+        throw new Error('No valid Event Headers');
+      }
+
       Object.entries(event.valid.headers).forEach(([key, value]) => {
         mockHeaders[key.toLowerCase()] = value;
       });
