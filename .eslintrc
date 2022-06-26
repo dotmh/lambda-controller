@@ -1,0 +1,4 @@
+{
+  "extends": "@dotmh/eslint-config-ts",
+  "ignorePatterns": ["templates/**/*"]
+}

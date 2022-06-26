@@ -16,19 +16,17 @@ blocks:
       prologue:
         commands:
           - checkout
-          - sem-version node 10.13.0
+          - sem-version node 16.14.2
   - name: Test
     task:
-      secrets:
-        - name: codacy
       jobs:
         - name: Test
           commands:
-            - npm run test-with-coverage
+            - npm run test
       prologue:
         commands:
           - checkout
-          - sem-version node 10.13.0
+          - sem-version node 16.14.2
           - cache restore
   - name: Lint
     task:
@@ -39,20 +37,20 @@ blocks:
       prologue:
         commands:
           - checkout
-          - sem-version node 10.13.0
+          - sem-version node 16.14.2
           - cache restore
   - name: Deploy
     skip:
-      when: "branch != 'master'"
+      when: "branch != 'main'"
     task:
       secrets:
         - name: npm
       jobs:
         - name: Publish
           commands:
-          - npm publish
+            - npm publish
       prologue:
         commands:
           - checkout
-          - sem-version node 10.13.0
+          - sem-version node 16.14.2
           - cache restore
