@@ -150,29 +150,6 @@ describe('LambdaController', () => {
       expect(controller.foo()).not.toEqual(string);
     });
 
-    it('#add should not allow to extending with non objects', () => {
-      const controller = mockController();
-
-      const fn = () => {
-        controller.add('string');
-      };
-
-      expect(fn).toThrow('You can only add objects');
-    });
-
-    it('should allow access to internal vars using a method', () => {
-      const controller = mockController();
-      const mixin = {
-        foo() {
-          return this.event;
-        },
-      };
-
-      controller.add(mixin);
-
-      expect(controller.foo()).toEqual(event.valid);
-    });
-
     it('should allow access to internal vars using getter', () => {
       const controller = mockController();
       const mixin = {
