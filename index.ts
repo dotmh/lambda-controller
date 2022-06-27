@@ -43,6 +43,8 @@ export class LambdaController {
 
   private mixinInitializers: any[];
 
+  [key: string]: any;
+
   constructor(
     public event: APIGatewayProxyEvent,
     public ctx: Context,
@@ -130,12 +132,8 @@ export class LambdaController {
    * });
    * @author Martin Haynes <oss@dotmh.io>
    */
-  add(mixin: Mixin): LambdaController {
-    if (typeof mixin !== 'object') {
-      throw new TypeError('You can only add objects');
-    }
-
-    this.mixinInitializers = [];
+  add(mixin: Mixin): LambdaController & Mixin {
+    this.mixinInitializers = this.mixinInitializers ?? [];
 
     const currentKeys = Object.getOwnPropertyNames(this);
     const mixinKeys = Object.getOwnPropertyNames(mixin);

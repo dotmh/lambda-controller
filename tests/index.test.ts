@@ -96,7 +96,7 @@ describe('LambdaController', () => {
   describe('Add', () => {
     it('should add a mixin', () => {
       const string = 'bar';
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         foo: () => string,
       };
@@ -108,7 +108,7 @@ describe('LambdaController', () => {
 
     it('should add a getter in a mixin', () => {
       const string = 'bar';
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         get foo() {
           return string;
@@ -122,7 +122,7 @@ describe('LambdaController', () => {
 
     it('should fire the init of all mixins after adding them', () => {
       const string = 'foobar';
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         init() {
           this.bar = string;
@@ -136,7 +136,7 @@ describe('LambdaController', () => {
 
     it('should not override an existing method', () => {
       const string = 'bar';
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const baseMixin = {
         foo: () => 'boo',
       };
@@ -151,7 +151,7 @@ describe('LambdaController', () => {
     });
 
     it('#add should not allow to extending with non objects', () => {
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
 
       const fn = () => {
         controller.add('string');
@@ -161,7 +161,7 @@ describe('LambdaController', () => {
     });
 
     it('should allow access to internal vars using a method', () => {
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         foo() {
           return this.event;
@@ -174,7 +174,7 @@ describe('LambdaController', () => {
     });
 
     it('should allow access to internal vars using getter', () => {
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         get foo() {
           return this.event;
