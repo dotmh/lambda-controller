@@ -1,4 +1,4 @@
-const {event, ctx, callback} = require('./mocks');
+import {event, ctx, callback} from './mocks';
 
 import {LambdaController, NormalizedHeaders} from '..';
 
@@ -31,6 +31,11 @@ describe('LambdaController', () => {
     it('should return the http headers as an object of header/value', () => {
       const controller = mockController();
       const mockHeaders: NormalizedHeaders = {};
+
+      if (!event.valid?.headers) {
+        throw new Error('No valid Event Headers');
+      }
+
       Object.entries(event.valid.headers).forEach(([key, value]) => {
         mockHeaders[key.toLowerCase()] = value;
       });
@@ -91,7 +96,7 @@ describe('LambdaController', () => {
   describe('Add', () => {
     it('should add a mixin', () => {
       const string = 'bar';
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         foo: () => string,
       };
@@ -103,7 +108,7 @@ describe('LambdaController', () => {
 
     it('should add a getter in a mixin', () => {
       const string = 'bar';
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         get foo() {
           return string;
@@ -117,7 +122,7 @@ describe('LambdaController', () => {
 
     it('should fire the init of all mixins after adding them', () => {
       const string = 'foobar';
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         init() {
           this.bar = string;
@@ -131,7 +136,7 @@ describe('LambdaController', () => {
 
     it('should not override an existing method', () => {
       const string = 'bar';
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const baseMixin = {
         foo: () => 'boo',
       };
@@ -145,31 +150,8 @@ describe('LambdaController', () => {
       expect(controller.foo()).not.toEqual(string);
     });
 
-    it('#add should not allow to extending with non objects', () => {
-      const controller = mockController() as unknown as any;
-
-      const fn = () => {
-        controller.add('string');
-      };
-
-      expect(fn).toThrow('You can only add objects');
-    });
-
-    it('should allow access to internal vars using a method', () => {
-      const controller = mockController() as unknown as any;
-      const mixin = {
-        foo() {
-          return this.event;
-        },
-      };
-
-      controller.add(mixin);
-
-      expect(controller.foo()).toEqual(event.valid);
-    });
-
     it('should allow access to internal vars using getter', () => {
-      const controller = mockController() as unknown as any;
+      const controller = mockController();
       const mixin = {
         get foo() {
           return this.event;

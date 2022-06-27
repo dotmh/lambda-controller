@@ -5,7 +5,7 @@ export interface MockCTX {
 }
 
 export const ctx: MockCTX = {
-  noop: null,
+  noop: {} as unknown as Context,
 };
 
 export interface MockCallbacks {
@@ -17,7 +17,7 @@ export const callback: MockCallbacks = {
 };
 
 export interface MockEvents {
-  [key: string]: Partial<APIGatewayProxyEvent>;
+  [key: string]: APIGatewayProxyEvent;
 }
 
 export const event: MockEvents = {
@@ -25,6 +25,7 @@ export const event: MockEvents = {
     resource: '/',
     path: '/',
     httpMethod: 'GET',
+    isBase64Encoded: false,
     headers: {
       'Accept': '*/*',
       'Accept-Encoding': 'gzip, deflate',
@@ -46,6 +47,9 @@ export const event: MockEvents = {
       'X-Forwarded-Port': '443',
       'X-Forwarded-Proto': 'https',
     },
+    multiValueHeaders: {},
+    multiValueQueryStringParameters: null,
+    stageVariables: null,
     queryStringParameters: {
       translate:
         '컴백 임박’ 모모랜드 연우-주이-혜빈-나윤, 개인 티저 이미지 공개',
@@ -54,5 +58,5 @@ export const event: MockEvents = {
       proxy: 'hello',
     },
     body: null,
-  },
+  } as unknown as APIGatewayProxyEvent,
 };

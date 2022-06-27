@@ -9,5 +9,6 @@
     "sourceMap": true,
     "types": ["node", "jest"],
     "declaration": true
-  }
+  },
+  "include": ["index.ts"]
 }
